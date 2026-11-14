@@ -1,0 +1,77 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.venv/
+venv/
+env/
+pip-wheel-metadata/
+
+# Node.js / Frontend
+node_modules/
+dist/
+build/
+*.local
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Environment files
+.env
+.env.local
+.env.*.local
+*.env
+
+# Runtime data (not committed)
+data/
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+logs/
+*.log
+
+# Backups
+backups/
+*.bak
+*.backup
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Build outputs
+*.egg-info/
+*.whl
+*.tar.gz
+
+# TypeScript
+*.tsbuildinfo
+
+# Coverage
+coverage/
+
+# Local config
+*.local.yml
+*.local.yaml
+local.settings.json
+
+# Obsidian vault (user's personal vault - not committed)
+# If you have a test vault in the repo, be specific
+# vault/
