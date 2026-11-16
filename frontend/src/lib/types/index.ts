@@ -51,7 +51,8 @@ export interface MCPServer extends Resource {
   args_json?: string;
   url?: string;
   env_var_names_json?: string;
-  reported_status?: "configured" | "healthy" | "needs_auth" | "failed" | "not_checked";
+  reported_status?:
+    "configured" | "healthy" | "needs_auth" | "failed" | "not_checked";
   last_checked_at?: string;
 }
 

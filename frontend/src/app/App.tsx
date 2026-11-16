@@ -10,13 +10,13 @@ import { MCP } from "../features/mcp/MCP";
 import { Applications } from "../features/applications/Applications";
 import { SystemExplorer } from "../features/system-explorer/SystemExplorer";
 import { Activity } from "../features/activity/Activity";
-import { Settings } from "../features/settings/Settings";
+import { SettingsPage } from "../features/settings/Settings";
 import { Layout } from "../components/Layout";
 
 function App() {
   return (
-    <Layout>
-      <Routes>
+    <Routes>
+      <Route element={<Layout />}>
         <Route path="/" element={<Dashboard />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/repositories" element={<Repositories />} />
@@ -25,9 +25,9 @@ function App() {
         <Route path="/applications" element={<Applications />} />
         <Route path="/system" element={<SystemExplorer />} />
         <Route path="/activity" element={<Activity />} />
-        <Route path="/settings" element={<Settings />} />
-      </Routes>
-    </Layout>
+        <Route path="/settings" element={<SettingsPage />} />
+      </Route>
+    </Routes>
   );
 }
 
