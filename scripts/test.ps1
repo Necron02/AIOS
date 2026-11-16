@@ -2,25 +2,53 @@
 .SYNOPSIS
     Run NEXUS test suite (backend + frontend)
 .DESCRIPTION
-    V0.0 scaffold — NOT YET IMPLEMENTED.
-    This script will run all automated tests.
+    V0.1 implementation — runs all automated tests.
 .NOTES
-    Phase: V0.1 (planned)
+    Phase: V0.1
 #>
 
 Write-Host "NEXUS Test Suite" -ForegroundColor Cyan
 Write-Host "================" -ForegroundColor Cyan
 Write-Host ""
-Write-Host "⚠️  NOT YET IMPLEMENTED — V0.1 scaffold" -ForegroundColor Yellow
+
+$allPassed = $true
+
+# Backend tests
+Write-Host "Running backend tests..." -ForegroundColor Gray
+cd backend
+$backendResult = uv run pytest -v 2>&1
+$backendExit = $LASTEXITCODE
+Write-Host $backendResult
+if ($backendExit -ne 0) {
+    Write-Host "Backend tests FAILED" -ForegroundColor Red
+    $allPassed = $false
+} else {
+    Write-Host "Backend tests PASSED" -ForegroundColor Green
+}
+cd ..
+
 Write-Host ""
 
-Write-Host "Planned commands for V0.1:" -ForegroundColor Gray
-Write-Host "  Backend:  cd backend && uv run pytest -v" -ForegroundColor Gray
-Write-Host "  Frontend: cd frontend && npm run test" -ForegroundColor Gray
+# Frontend tests
+Write-Host "Running frontend tests..." -ForegroundColor Gray
+cd frontend
+$frontendResult = npm run test -- --run 2>&1
+$frontendExit = $LASTEXITCODE
+Write-Host $frontendResult
+if ($frontendExit -ne 0) {
+    Write-Host "Frontend tests FAILED" -ForegroundColor Red
+    $allPassed = $false
+} else {
+    Write-Host "Frontend tests PASSED" -ForegroundColor Green
+}
+cd ..
+
 Write-Host ""
-Write-Host "Test categories (planned):" -ForegroundColor Gray
-Write-Host "  Unit:        Path validation, URL parsing, skill parsing, service rules" -ForegroundColor Gray
-Write-Host "  Integration: API + temp SQLite, migrations, event/outbox transactions" -ForegroundColor Gray
-Write-Host "  Contract:    Fake claude CLI, GitHub API fixtures, temp Obsidian vault" -ForegroundColor Gray
-Write-Host "  Frontend:    Components, forms, filters, dialogs, error states" -ForegroundColor Gray
-Write-Host "  Safety:      Path traversal, PID reuse, archive slip, secret redaction" -ForegroundColor Gray
+Write-Host "====================" -ForegroundColor Cyan
+if ($allPassed) {
+    Write-Host "ALL TESTS PASSED" -ForegroundColor Green
+    exit 0
+} else {
+    Write-Host "SOME TESTS FAILED" -ForegroundColor Red
+    exit 1
+}
